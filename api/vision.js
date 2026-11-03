@@ -33,7 +33,7 @@ module.exports = async function handler(req, res) {
   }
 
   const suppliedToken = (req.headers.authorization || "")
-    .replace(/^Bearer\\s+/i, "");
+    .replace(/^Bearer\s+/i, "");
 
   if (!suppliedToken || suppliedToken !== expectedToken) {
     return send(res, 401, { error: "Unauthorized" });
@@ -150,7 +150,7 @@ module.exports = async function handler(req, res) {
     const description = (result.candidates?.[0]?.content?.parts || [])
       .filter(part => typeof part.text === "string")
       .map(part => part.text)
-      .join("\\n")
+      .join("\n")
       .trim();
 
     if (!description) {
