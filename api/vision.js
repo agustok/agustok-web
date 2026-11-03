@@ -22,7 +22,7 @@ module.exports = async function handler(req, res) {
     return send(res, 503, { error: "Vision service is not configured" });
   }
 
-  const suppliedToken = (req.headers.authorization || "").replace(/^Bearer\\s+/i, "");
+  const suppliedToken = (req.headers.authorization || "").replace(/^Bearer\s+/i, "");
   if (!suppliedToken || suppliedToken !== expectedToken) {
     return send(res, 401, { error: "Unauthorized" });
   }
@@ -78,7 +78,7 @@ module.exports = async function handler(req, res) {
       .flatMap(item => item.content || [])
       .filter(item => item.type === "output_text")
       .map(item => item.text)
-      .join("\\n")
+      .join("\n")
       .trim();
 
     if (!description) {
